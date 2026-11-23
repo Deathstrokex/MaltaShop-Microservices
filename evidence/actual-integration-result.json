@@ -1,0 +1,37 @@
+{
+  "run_type": "local three-process HTTP end-to-end verification, no Docker, no GitHub Actions",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:18000/orders",
+    "headers": {
+      "Idempotency-Key": "basket-malta-2026-001",
+      "X-Correlation-ID": "malta-case-001"
+    },
+    "json": {
+      "customer_ref": "demonstration-anonymous-001",
+      "items": [
+        {"sku": "TV-02", "quantity": 1},
+        {"sku": "LAMP-01", "quantity": 2}
+      ]
+    }
+  },
+  "response_status": 202,
+  "response": {
+    "order_id": "754307b3-bfbf-4686-9b2f-97786a392465",
+    "status": "ACCEPTED",
+    "correlation_id": "malta-case-001",
+    "replayed": false
+  },
+  "notification": {
+    "order_id": "754307b3-bfbf-4686-9b2f-97786a392465",
+    "correlation_id": "malta-case-001",
+    "status": "QUEUED"
+  },
+  "replay": {
+    "order_id": "754307b3-bfbf-4686-9b2f-97786a392465",
+    "status": "ACCEPTED",
+    "correlation_id": "malta-case-001",
+    "replayed": true
+  },
+  "broker": {"states": {"acked": 1}}
+}
