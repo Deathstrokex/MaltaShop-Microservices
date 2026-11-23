@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.5, pytest-9.0.2
+collecting ... collected 6 items
+tests/test_broker.py::test_message_delivery_ack_and_publish_dedup PASSED [ 16%]
+tests/test_event_contract.py::test_orderplaced_event_contract_is_accepted_by_notification PASSED [ 33%]
+tests/test_notification.py::test_consumer_inbox_deduplicates PASSED      [ 50%]
+tests/test_order.py::test_validation_rejects_boolean_quantity PASSED     [ 66%]
+tests/test_order.py::test_order_created_and_idempotent PASSED            [ 83%]
+tests/test_order.py::test_missing_idempotency_header_rejected PASSED     [100%]
+============================== 6 passed in 0.53s ===============================
+This is local pytest output, not a GitHub Actions screenshot.
