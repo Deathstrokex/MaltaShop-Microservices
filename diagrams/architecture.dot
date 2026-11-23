@@ -1,0 +1,28 @@
+digraph MaltaShop {
+ graph [rankdir=TB, bgcolor="white", pad="0.18", nodesep="0.35", ranksep="0.54", fontname="Times New Roman", splines=polyline];
+ node [shape=box,style="rounded,filled",fontname="DejaVu Sans",fontsize=13,color="#27415a",fillcolor="#edf5fc",penwidth=1.2,margin="0.13,0.09"];
+ edge [fontname="DejaVu Sans",fontsize=10,color="#53677b",penwidth=1.4,arrowsize=.6];
+ shopper [label="Web + mobile\ncustomers",fillcolor="#e5f2e9"];
+ retailer [label="30 retailers\n+ courier",fillcolor="#e5f2e9"];
+ collector [label="Browsing\nevent collector",fillcolor="#fff5e6"];
+ gw [label="API gateway\nOIDC + OAuth2\nscopes + tenant checks",fillcolor="#d9f1ed"];
+ order [label="Order\nprivate SQL",fillcolor="#e9efff"];
+ payment [label="Payment adapter\nprovider token only",fillcolor="#e9efff"];
+ stock [label="Inventory\nprivate SQL",fillcolor="#e9efff"];
+ catalog [label="Catalogue / Customer\nprivate SQL stores",fillcolor="#e9efff"];
+ broker [label="Durable broker\nindependent queues",fillcolor="#fff2d9"];
+ notification [label="Notification\nprivate store",fillcolor="#e9efff"];
+ recommender [label="Python AI\nRecommendation\nindependent consumer",fillcolor="#e0faee"];
+ provider [label="External\ncard provider",fillcolor="#f1f1f1"];
+ shopper -> gw; retailer -> gw [label="partner token"];
+ shopper -> collector [style=dashed, label="views"];
+ gw -> order [label="checkout"];
+ gw -> catalog [label="browse / profile"];
+ order -> stock [label="reserve (sync)"];
+ order -> payment [label="authorise (sync)"];
+ payment -> provider;
+ order -> broker [label="outbox events",style=dashed];
+ collector -> broker [label="view events",style=dashed];
+ broker -> notification [label="async",style=dashed];
+ broker -> recommender [label="async",style=dashed];
+}
