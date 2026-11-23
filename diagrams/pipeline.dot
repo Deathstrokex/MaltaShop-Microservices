@@ -1,0 +1,15 @@
+digraph Pipeline {
+ graph [rankdir=TB,bgcolor="white",pad="0.2",nodesep="0.22",ranksep="0.28",fontname="DejaVu Sans",splines=ortho];
+ node [shape=box,style="rounded,filled",fontname="DejaVu Sans",fontsize=14,color="#334e68",penwidth=1.2,margin="0.15,0.1",fillcolor="#edf4fc"];
+ edge [color="#64748b",arrowsize=.55,penwidth=1.4];
+ a [label="Git push / pull request\nshort-lived branch + review"];
+ b [label="GATE 1: syntax + unit tests\nsecret / dependency checks",fillcolor="#e2f3e9"];
+ c [label="GATE 2: API contract + integration\nOrder -> broker -> Notification",fillcolor="#e2f3e9"];
+ d [label="Build once: OCI image\ncommit SHA + immutable digest",fillcolor="#deeffc"];
+ e [label="GATE 3: image scan + Compose smoke\nsynthetic order and idempotency",fillcolor="#e2f3e9"];
+ f [label="Staging: promote same digest\nfunctional + load smoke"];
+ g [label="HUMAN APPROVAL\nprotected production environment",fillcolor="#fff0d4"];
+ h [label="Payment canary: 5% -> 25% -> 100%\n10-minute health gates each",fillcolor="#dff4f0"];
+ i [label="Observe SLO, error and latency\nrollback digest / shift weight on fail",fillcolor="#fff0d4"];
+ a->b->c->d->e->f->g->h->i;
+}
