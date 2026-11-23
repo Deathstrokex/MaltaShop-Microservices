@@ -1,0 +1,38 @@
+[
+  {
+    "timestamp": "2026-11-23T15:55:25.278633+00:00",
+    "level": "INFO",
+    "service": "order",
+    "event": "order_accepted",
+    "correlation_id": "malta-case-001",
+    "order_id": "754307b3-bfbf-4686-9b2f-97786a392465",
+    "event_id": "4d336c80-3efe-403c-8e1f-1735a978518f"
+  },
+  {
+    "timestamp": "2026-11-23T15:55:25.351239+00:00",
+    "level": "INFO",
+    "service": "order",
+    "event": "event_published",
+    "correlation_id": "malta-case-001",
+    "event_id": "4d336c80-3efe-403c-8e1f-1735a978518f"
+  },
+  {
+    "timestamp": "2026-11-23T15:55:25.349477+00:00",
+    "level": "INFO",
+    "service": "broker",
+    "event": "event_accepted",
+    "correlation_id": "malta-case-001",
+    "event_id": "4d336c80-3efe-403c-8e1f-1735a978518f",
+    "event_type": "OrderPlaced"
+  },
+  {
+    "timestamp": "2026-11-23T15:55:25.610763+00:00",
+    "level": "INFO",
+    "service": "notification",
+    "event": "event_consumed",
+    "correlation_id": "malta-case-001",
+    "order_id": "754307b3-bfbf-4686-9b2f-97786a392465",
+    "event_id": "4d336c80-3efe-403c-8e1f-1735a978518f",
+    "duplicate": false
+  }
+]
