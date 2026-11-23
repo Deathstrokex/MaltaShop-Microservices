@@ -1,0 +1,43 @@
+name: maltashop-prototype
+services:
+  broker:
+    build:
+      context: .
+      dockerfile: broker/Dockerfile
+    environment:
+      DB_PATH: /data/broker.db
+    volumes:
+      - broker-data:/data
+    restart: unless-stopped
+  order:
+    build:
+      context: .
+      dockerfile: order/Dockerfile
+    environment:
+      DB_PATH: /data/order.db
+      BROKER_URL: http://broker:8000
+    depends_on:
+      broker:
+        condition: service_healthy
+    ports:
+      - '8000:8000'
+    volumes:
+      - order-data:/data
+    restart: unless-stopped
+  notification:
+    build:
+      context: .
+      dockerfile: notification/Dockerfile
+    environment:
+      DB_PATH: /data/notification.db
+      BROKER_URL: http://broker:8000
+    depends_on:
+      broker:
+        condition: service_healthy
+    volumes:
+      - notification-data:/data
+    restart: unless-stopped
+volumes:
+  broker-data:
+  order-data:
+  notification-data:
